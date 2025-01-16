@@ -1,0 +1,138 @@
+{
+  "name" : "Chiara",
+  "document": "",
+  "phone": "55013997330408",
+  "logoPath" : "assets/chiara-logo.jpg",
+  "specialty" : "Linguiça Artesanal",
+  "address" : {
+    "street" : "R. Mal. Floriano",
+    "number" : "26",
+    "neighborhood" : "Centro",
+    "complement" : "",
+    "city" : "São Lourenço",
+    "reference" : ""
+  },
+  "products" : [
+    {
+      "id" : "1",
+      "name" : "Ovos Beneditos do phelps com arroz",
+      "description" : "1 ovo com requeijão",
+      "price" : 20.10,
+      "filters" : ["mais_pedidos"]
+    },
+    {
+      "id" : "2",
+      "name" : "Ovos com maçã",
+      "description" : "2 ovos com requeijão",
+      "price" : 15.20,
+      "filters" : ["mais_pedidos"]
+    },
+    {
+      "id" : "3",
+      "name" : "Ovos Beneditos 3",
+      "description" : "3 ovos com requeijão",
+      "price" : 10.99,
+      "filters" : ["mais_pedidos"]
+    },
+    {
+      "id" : "4",
+      "name" : "Ovos Beneditos 4",
+      "description" : "4 ovos com requeijão",
+      "price" : 5,
+      "filters" : ["classicos"]
+    },{
+      "id" : "3123213",
+      "name" : "Ovos Beneditos 4",
+      "description" : "4 ovos com requeijão",
+      "price" : 5,
+      "filters" : ["classicos"]
+    },{
+      "id" : "321321",
+      "name" : "Ovos Beneditos 4",
+      "description" : "4 ovos com requeijão",
+      "price" : 5,
+      "filters" : ["classicos"]
+    },
+    {
+      "id" : "5",
+      "name" : "Ovos Beneditos 5",
+      "description" : "5 ovos com requeijão",
+      "price" : 3.21,
+      "filters" : ["especiais"]
+    },
+    {
+      "id" : "52",
+      "name" : "Ovos Beneditos 5",
+      "description" : "5 ovos com requeijão",
+      "price" : 3.21,
+      "filters" : ["especiais"]
+    },
+    {
+      "id" : "53",
+      "name" : "Ovos Beneditos 5",
+      "description" : "5 ovos com requeijão",
+      "price" : 9.21,
+      "filters" : ["especiais"]
+    }
+  ],
+  "neighborhoods": [
+    {
+      "name": "Aeroporto",
+      "price": 1.60,
+      "value" : "AEROPORTO"
+    },
+    {
+      "name": "Atrás da Rodoviaria",
+      "price": 2.60,
+      "value" : "ATRAS_DA_RODOVIARIA"
+    },
+    {
+      "name": "Biquinha",
+      "price": 3.40,
+      "value" : "BIQUINHA"
+    },
+    {
+      "name": "Canaã",
+      "price": 4.30,
+      "value" : "CANAA"
+    },
+    {
+      "name": "Centro",
+      "price": 5.20,
+      "value" : "CENTRO"
+    },
+    {
+      "name": "Demais Bairros",
+      "price": 6.10,
+      "value" : "DEMAIS_BAIRROS"
+    }
+  ],
+  "cart" : {
+    "products": [],
+    "totalProducts": 0,
+    "totalPriceWithoutDelivery": 0,
+    "totalPriceWithDelivery": 0,
+    "freight": {
+      "name": "",
+      "price": 0,
+      "value": ""
+    },
+    "delivery_type": {
+      "text": "",
+      "value": ""
+    },
+    "client": {
+      "name": "",
+      "document": "",
+      "phone": "",
+      "address": {
+        "street" : "",
+        "number" : "",
+        "neighborhood" : "",
+        "complement" : "",
+        "city" : "",
+        "reference" : ""
+      }
+    }
+  }
+}

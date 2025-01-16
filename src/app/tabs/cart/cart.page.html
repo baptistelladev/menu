@@ -1,0 +1,237 @@
+<ion-header
+class="ion-no-border"
+mode="ios">
+  <ion-toolbar
+  mode="ios"
+  class="ion-bg-black">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="6">
+          <ion-text
+            class="txt-center"
+            mode="ios">
+              <p class="color-white fs-20 font-w-thin">Seu <b>carrinho</b></p>
+            </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+class="ion-bg-gray-ed"
+[forceOverscroll]="false"
+[fullscreen]="true">
+  <section class="cart-empty" *ngIf="appInfo.cart && appInfo.cart.products && appInfo.cart.products.length === 0">
+    <ion-text
+    mode="ios"
+    class="ion-text-center line-height-16">
+      <ion-icon name="cart" class="fs-82 color-gray-mid opacity-4"></ion-icon>
+      <p class="fs-14 color-gray-text">Seu carrinho está vazio</p>
+    </ion-text>
+
+    <ion-button
+    (click)="goToHomePage()"
+    class="main-solid fs-14 mg-top-32"
+    mode="md"
+    title="Finalizar pedido"
+    fill="solid"
+    shape="square">
+      <ion-icon name="bag-add-outline" class="mg-right-5 fs-18"></ion-icon> Adicionar itens
+    </ion-button>
+  </section>
+
+  <section class="cart" *ngIf="appInfo.cart && appInfo.cart.products && appInfo.cart.products.length > 0">
+    <div class="cart-wrapper">
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col size="12">
+            <ion-text mode="md" class="line-height-16">
+              <p class="fs-12 color-gray-mid">Seu pedido em</p>
+              <p class="fs-16 color-gray-text mg-top-5">{{ appInfo.name }} {{ appInfo.specialty }}</p>
+            </ion-text>
+          </ion-col>
+
+          <ion-col size="12">
+            <hr class="menu-divider">
+          </ion-col>
+
+          <ion-col size="12">
+            <ion-text mode="md" class="line-height-16">
+              <p class="fs-16 color-gray-text"><b>Lançamentos</b></p>
+            </ion-text>
+          </ion-col>
+
+          <ng-container *ngFor="let item of appInfo.cart?.products; let last = last">
+            <ion-col size="12">
+              <app-product-card-inside-cart [product]="item" (produtHasRemoved)="productHasRemoved($event)" (quantityHasChanged)="quantityHasChanged()"></app-product-card-inside-cart>
+            </ion-col>
+
+            <ion-col size="12">
+              <hr class="menu-divider">
+            </ion-col>
+          </ng-container>
+
+          <ion-col size="12">
+            <div class="delivery-wrapper mg-top-16">
+              <ion-item mode="ios" lines="none">
+
+                <ion-icon
+                *ngIf="selectedDeliveryType"
+                [name]="selectedDeliveryType.value === DeliveryTypeEnum.DELIVERY ? 'bicycle-outline' : 'storefront-outline'"
+                slot="start"
+                class="color-gray-mid">
+                </ion-icon>
+
+                <ion-select
+                (ionChange)="deliveryTypeChanged($event)"
+                [(ngModel)]="selectedDeliveryTypeUsedInSelect"
+                label="Tipo de entrega" label-placement="stacked"
+                toggleIcon="add"
+                expandedIcon="remove"
+                aria-label="Tipo de entrega"
+                interface="popover"
+                placeholder="Selecione">
+                  <ion-select-option [value]="type.value" *ngFor="let type of MOCK_DELIVERY_TYPE">{{ type.text }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item
+              *ngIf="selectedDeliveryType && selectedDeliveryType.value === DeliveryTypeEnum.DELIVERY && appInfo"
+              class="neighborhood"
+              lines="none"
+              mode="ios">
+                <ion-select
+                (ionChange)="neighborhoodChanged($event)"
+                [(ngModel)]="selectedNeighborhoodUsedInSelect"
+                label="Bairro"
+                aria-label="Bairro"
+                interface="popover"
+                placeholder="Selecione">
+                  <ion-select-option [value]="neighborhood.value" *ngFor="let neighborhood of appInfo.neighborhoods">{{ neighborhood.name }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="12">
+
+
+            <ion-item mode="ios" class="ion-bg-transparent">
+              <ion-text
+              slot="start"
+              mode="ios"
+              class="ion-text-start">
+                <p class="fs-12 color-gray-mid">Forma de pagamento</p>
+              </ion-text>
+
+              <ion-select
+              class="field-on-form payment-method"
+              slot="end"
+              (ionChange)="paymentMethodEnum($event)"
+              [(ngModel)]="selectedPaymentMethodUsedInSelect"
+              interface="popover"
+              placeholder="Selecione">
+                <ion-select-option [value]="method.value" *ngFor="let method of MOCK_PAYMENT_METHODS">{{ method.text }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item mode="ios" class="ion-bg-transparent" *ngIf="selectedPaymentMethod && selectedPaymentMethod.value === PaymentMethodEnum.DINHEIRO">
+              <ion-text
+              slot="start"
+              mode="ios"
+              class="ion-text-start">
+                <p class="fs-12 color-gray-mid">Troco para (opcional)</p>
+              </ion-text>
+
+              <ion-input
+              (keyup)="savePaymentMethodAndChange()"
+              [maskito]="MONEY_MASK"
+              [maskitoElement]="maskPredicate"
+              placeholder="Inserir valor"
+              type="text"
+              inputmode="numeric"
+              class="ion-text-end field-on-form"
+              slot="end"
+              [(ngModel)]="changeForPayment">
+              </ion-input>
+            </ion-item>
+
+            <ion-item mode="ios" class="ion-bg-transparent">
+              <ion-text
+              slot="start"
+              mode="ios"
+              class="ion-text-start">
+                <p class="fs-12 color-gray-mid">Subtotal</p>
+              </ion-text>
+
+              <ion-text
+              slot="end"
+              mode="ios"
+              class="ion-text-end">
+                <p class="fs-16 color-gray-text">{{ appInfo.cart.totalPriceWithoutDelivery | currency: 'BRL' }}</p>
+              </ion-text>
+            </ion-item>
+
+            <ion-item mode="ios" class="ion-bg-transparent" *ngIf="selectedDeliveryType && selectedDeliveryType.value === DeliveryTypeEnum.DELIVERY">
+              <ion-text
+              slot="start"
+              mode="ios"
+              class="ion-text-start">
+                <p class="fs-12 color-gray-mid">Taxa de entrega</p>
+              </ion-text>
+
+              <ion-text
+              slot="end"
+              mode="ios"
+              class="ion-text-end">
+                <p class="fs-16 color-gray-text">{{ appInfo.cart.freight?.price| currency: 'BRL' }}</p>
+              </ion-text>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" class="no-padding" *ngIf="selectedDeliveryType && selectedDeliveryType.value === DeliveryTypeEnum.PICK_UP">
+            <ion-item mode="md" class="bootstrap-alert warning mg-top-16" lines="none">
+              <ion-text mode="ios" class="line-height-22">
+                <p class="fs-12 color-bootstrap-warning"><b>Atenção</b></p>
+                <p class="fs-14 color-bootstrap-warning">Você irá retirar na loja. <b>Não será cobrado taxa de entrega</b>.</p>
+              </ion-text>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+</ion-content>
+
+<ion-footer
+*ngIf="appInfo.cart && appInfo.cart.products && appInfo.cart.products.length > 0"
+class="ion-no-border"
+mode="ios">
+  <ion-toolbar
+  mode="ios"
+  class="ion-bg-gray-ed">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="6" class="ion-align-self-end">
+          <ion-text mode="ios">
+            <p class="color-gray-text"><b>Total:</b> <span class="mg-left-5">{{ selectedDeliveryType && selectedDeliveryType.value === DeliveryTypeEnum.DELIVERY ? (appInfo.cart.totalPriceWithDelivery | currency: 'BRL') : (appInfo.cart.totalPriceWithoutDelivery | currency: 'BRL' ) }}</span></p>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" class="ion-text-end">
+          <ion-button
+          (click)="checkForClientAndSendOrder()"
+          [disabled]="appInfo.cart.products.length === 0 || !selectedDeliveryTypeUsedInSelect || !selectedPaymentMethodUsedInSelect || (selectedDeliveryTypeUsedInSelect === DeliveryTypeEnum.DELIVERY && !selectedNeighborhoodUsedInSelect)"
+          class="main-solid fs-14"
+          mode="md"
+          title="Finalizar pedido"
+          fill="solid"
+          shape="square">
+            <ion-icon name="logo-whatsapp" class="mg-right-5 fs-18"></ion-icon> Finalizar pedido
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
