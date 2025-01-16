@@ -25,6 +25,7 @@
   class="more-or-less-wrapper">
     <div class="add-wrapper">
       <ion-input
+      [readonly]="true"
       [formControlName]="'quantity_' + product.id"
       [id]="'quantity_' + product.id"
       [maxlength]="3"

@@ -30,7 +30,7 @@ mode="ios">
     <div class="product-header">
       <div class="product-img-wrapper">
         <div class="product-img-container animate__animated animate__fadeIn">
-          <ion-img [src]="'./../../../assets/products/burguer.png'" alt="" title=""></ion-img>
+          <ion-img [src]="'assets/products/burguer.png'" alt="" title=""></ion-img>
         </div>
       </div>
     </div>
@@ -71,6 +71,7 @@ mode="ios">
             class="more-or-less-wrapper">
               <div class="add-wrapper">
                 <ion-input
+                [readonly]="true"
                 [formControlName]="'quantity'"
                 [maxlength]="3"
                 mode="ios"
