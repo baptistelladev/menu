@@ -1,0 +1,362 @@
+
+
+@use "./assets/scss/fonts.scss";
+@use 'swiper/scss';
+@use '@ionic/angular/css/ionic-swiper';
+
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+@import 'animate.css';
+
+/* OTHERS */
+.unlock-shadow-from-swiper {
+  padding-top: 5px;
+  padding-bottom: 10px;
+
+  &.bigger {
+    padding-bottom: 16px;
+  }
+}
+
+.auto-width { width: auto; }
+
+
+ion-app {
+  min-width: 345px;
+}
+
+* {
+  font-family: Lato-Light;
+}
+
+// GLOBAL
+ion-header {
+  @extend .ion-no-padding;
+
+  ion-toolbar {
+    @extend .ion-no-padding;
+    --min-height: 50px;
+  }
+}
+
+ion-text {
+  p { margin: 0; }
+}
+
+// BACKGROUNDS
+.ion-bg-gray-ed { --background: var(--gray-ed); }
+.ion-bg-gray-3 { --background: var(--gray-3); }
+.ion-bg-black { --background: var(--black); }
+.ion-bg-transparent { --background: var(--transparent); }
+
+.bg-black { background: var(--black); }
+
+// COLORS
+.ion-color-white { --color: var(--white); }
+.ion-color-gray-text { --color: var(--gray-text); }
+
+.color-white { color: var(--white); }
+.color-gray-text { color: var(--gray-text); }
+.color-gray-mid { color: var(--gray-mid); }
+.color-bootstrap-warning { color: var(--bootstrap-warning); }
+.color-main-primary { color: var(--primary-main-color); }
+
+// SPACES
+.ion-no-padding {
+  --padding-top: 0;
+  --padding-end: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+}
+
+.no-pad-bottom { padding-bottom: 0; }
+.no-pad-top { padding-top: 0; }
+.no-padding { padding: 0; }
+
+// GRID
+ion-grid {
+  --ion-grid-padding: 8px;
+
+  ion-col { --ion-grid-column-padding: 8px; }
+}
+
+// FONT SIZE
+.fs-12 { font-size: 12px; }
+.fs-13 { font-size: 13px; }
+.fs-14 { font-size: 14px; }
+.fs-16 { font-size: 16px; }
+.fs-18 { font-size: 18px; }
+.fs-20 { font-size: 20px; }
+.fs-22 { font-size: 22px; }
+.fs-24 { font-size: 24px; }
+.fs-40 { font-size: 40px; }
+.fs-60 { font-size: 60px; }
+.fs-82 { font-size: 82px; }
+
+// FONT WEIGHT
+.font-w-thin { font-weight: 300; }
+.font-w-normal { font-weight: 400; }
+.font-w-bold { font-weight: 800; }
+
+// LINE HEIGHT
+.line-height-16 { line-height: 16px; }
+.line-height-22 { line-height: 22px; }
+.line-height-24 { line-height: 24px; }
+
+// ICON
+.thin-icon {
+  --ionicon-stroke-width: 18px;
+}
+
+// MARGENS
+.mg-bottom-8 { margin-bottom: 8px; }
+.mg-top-32 { margin-top: 32px; }
+.mg-bottom-32 { margin-bottom: 32px; }
+.mg-right-5 { margin-right: 5px; }
+.mg-left-5 { margin-left: 5px; }
+.mg-top-16 { margin-top: 16px; }
+.mg-right-16 { margin-right: 16px; }
+.mg-top-5 { margin-top: 5px; }
+.mg-top-8 { margin-top: 8px; }
+
+// OPACITY
+.opacity-4 { opacity: .4; }
+
+// BUTTONS
+ion-button {
+  min-height: 42px;
+  font-weight: normal;
+  text-transform: none;
+
+  &.main-solid {
+    --background: linear-gradient(.351turn, var(--primary-main-color) 43.71%, var(--primary-main-contrast) 58.8%);
+  }
+
+  &[size="small"] {
+    min-height: 0;
+  }
+}
+
+// INPUTS
+.menu-input-wrapper {
+  --background: var(--transparent);
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --inner-padding-end: 0;
+  --min-height: 0;
+  --border-color: var(--gray-da);
+  border-bottom: none;
+
+  &.has-helper-below {
+    --border-color: var(--transparent);
+    --border-width: 0;
+  }
+
+  &.border-light {
+    --border-color: #ececec;
+  }
+
+  ion-input {
+    --highlight-color-focused: var(--primary-main-contrast);
+    --color: var(--gray-text);
+    --placeholder-color: var(--gray-mid);
+    --placeholder-font-weight: 300;
+    font-weight: normal;
+    font-size: 16px;
+    min-height: 0;
+
+    .input-bottom.sc-ion-input-md {
+      border-color: var(--gray-da);
+
+      .counter.sc-ion-input-md, .helper-text.sc-ion-input-md {
+        color: var(--gray-mid);
+      }
+    }
+  }
+}
+
+// FLEX
+.flexed {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-1 { flex: 1; }
+
+.bootstrap-alert {
+  border-radius: 12px;
+  --min-height: 0;
+  --padding-top: 16px;
+  --padding-end: 16px;
+  --padding-start: 16px;
+  --padding-bottom: 16px;
+  --background: var(--gray-f4);
+  border: .5px solid var(--gray-da);
+
+  &.warning {
+    --background: var(--bootstrap-warning-light-bg);
+    border: 1px solid var(--bootstrap-warning-border);
+  }
+}
+
+// MODAL
+.menu-full-modal {
+  --width: 100%;
+  --height: 100%;
+}
+
+// ALERTS
+ion-alert.advise-alert {
+  .alert-sub-title.sc-ion-alert-ios {
+    text-align: left;
+    color: var(--gray-text);
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .alert-message.sc-ion-alert-ios, .alert-input-group.sc-ion-alert-ios {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: left;
+  }
+
+  .alert-button.sc-ion-alert-ios {
+    color: var(--primary-main-color);
+  }
+}
+
+.menu-divider {
+  height: 2px;
+  margin: 16px 0;
+  border-top: 1px solid var(--gray-da);
+  position: relative;
+}
+
+
+.delivery-wrapper {
+  width: 100%;
+  margin:  0 auto;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+
+  ion-item {
+    --border-radius: 12px;
+    --padding-start: 16px;
+    --padding-end: 0;
+    --inner-padding-end: 16px;
+    --padding-top: 7px;
+    --padding-bottom: 16px;
+    border-radius: 12px;
+    --background: var(--transparent);
+    --min-height: 0;
+
+    &.neighborhood {
+      border-top: 1px solid var(--gray-da);
+      --padding-bottom: 8px;
+      --background: var(--gray-3);
+      --color: var(--white);
+
+      &::part(container) {
+        font-weight: 400;
+        font-size: 18px;
+        color: var(--primary-main-color);
+      }
+    }
+
+    ion-icon {
+      align-self: center;
+      font-size: 26px;
+      margin: 8px 14px 0 0;
+      border-right: 1px solid var(--gray-da);
+      padding-right: 14px;
+    }
+
+    ion-select {
+      --color: var(--gray-text);
+      --placeholder-font-weight: normal;
+      font-weight: bold;
+      font-size: 18px;
+      --placeholder-color: var(--gray-mid);
+
+      &::part(icon) {
+        color: var(--gray-mid);
+      }
+
+      &::part(label) {
+        font-weight: 300;
+        font-size: 18px;
+        margin: 0 0 5px 0;
+      }
+
+      &::part(container) {
+        font-weight: 400;
+        font-size: 18px;
+
+        .selected-text {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+ion-radio-group {
+  &.sc-ion-select-popover-ios {
+    ion-item {
+      --color: var(--gray-text);
+      font-size: 14px;
+    }
+  }
+}
+
+ion-radio {
+  &::part(mark) {
+    border-color: var(--primary-main-color);
+  }
+}
+
+ion-loading {
+  &.menu-loading {
+    --spinner-color: var(--primary-main-color);
+  }
+}

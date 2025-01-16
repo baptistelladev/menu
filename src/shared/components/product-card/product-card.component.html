@@ -1,0 +1,66 @@
+<ng-container *ngIf="direction !== 'horizontal' || !direction">
+  <div class="product-card-wrapper" (click)="openProductDetails()" [ngClass]="{'card-disabled': isDisabled}">
+    <div class="card-disabled-wrapper" *ngIf="isDisabled">
+      <ion-text mode="ios" class="ion-text-center line-height-16">
+        <ion-icon name="cart" class="fs-24 color-gray-text"></ion-icon>
+        <p class="color-gray-text fs-14">Já consta no carrinho</p>
+      </ion-text>
+    </div>
+
+    <div class="product-card-image-wrapper">
+      <ion-img [src]="'./../../../assets/products/burguer.png'" title="dada" alt="dede"></ion-img>
+    </div>
+
+    <div class="description-wrapper">
+      <ion-item
+      lines="none"
+      mode="ios">
+        <ion-text mode="ios">
+          <p class="color-gray-text fs-14 font-w-normal">{{ product.name }}</p>
+          <p class="color-gray-text fs-12 font-w-thin">{{ product.description }}</p>
+        </ion-text>
+      </ion-item>
+
+      <ion-item
+      lines="none"
+      mode="ios">
+        <ion-text mode="ios">
+          <p class="color-gray-text fs-16 font-w-bold mg-top-8">{{ product.price | currency: 'BRL' }}</p>
+        </ion-text>
+      </ion-item>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="direction === 'horizontal'">
+  <div class="product-card-wrapper-horizontal" (click)="openProductDetails()" [ngClass]="{'card-disabled': isDisabled}">
+    <div class="card-disabled-wrapper" *ngIf="isDisabled">
+      <ion-text mode="ios" class="ion-text-center line-height-16">
+        <ion-icon name="cart" class="fs-24 color-gray-text"></ion-icon>
+        <p class="color-gray-text fs-14">Já consta no carrinho</p>
+      </ion-text>
+    </div>
+
+    <div class="description-wrapper">
+      <ion-item
+      lines="none"
+      mode="ios">
+        <ion-text mode="ios">
+          <p class="color-gray-text fs-14 font-w-normal">{{ product.name }}</p>
+          <p class="color-gray-text fs-12 font-w-thin description">{{ product.description }}</p>
+        </ion-text>
+      </ion-item>
+
+      <ion-item
+      lines="none"
+      mode="ios">
+        <ion-text mode="ios">
+          <p class="color-gray-text fs-16 font-w-bold mg-top-8">{{ product.price | currency: 'BRL' }}</p>
+        </ion-text>
+      </ion-item>
+    </div>
+    <div class="product-card-image-wrapper">
+      <ion-img [src]="'./../../../assets/products/burguer.png'" title="dada" alt="dede"></ion-img>
+    </div>
+  </div>
+</ng-container>

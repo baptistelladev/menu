@@ -1,0 +1,39 @@
+ion-header {
+  ion-toolbar {
+    --min-height: 82px;
+    --padding-start: 0;
+    --padding-top: 0;
+    --padding-end: 0;
+    --padding-bottom: 0;
+
+    ion-searchbar {
+      padding-bottom: 0;
+      padding-top: 0;
+      height: 100%;
+      width: 100%;
+      min-height: 72px;
+      --background: var(--transparent);
+      --placeholder-color: var(--gray-mid);
+      font-weight: bold;
+      --placeholder-font-weight: normal;
+      color: var(--gray-text);
+
+      &::ng-deep {
+        .searchbar-input-container.sc-ion-searchbar-ios {
+          min-height: 82px;
+
+          input {
+            padding-left: 42px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+section {
+  &.search-modal-content-wrapper {
+    padding: 16px 16px 24vh 16px;
+  }
+}

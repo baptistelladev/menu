@@ -1,0 +1,137 @@
+<ion-content
+#homeContent
+class="ion-bg-gray-ed"
+[forceOverscroll]="false"
+[fullscreen]="true"
+[scrollEvents]="true">
+  <div class="categories-swiper-wrapper">
+    <swiper-container
+    #homeSwiper
+    free-mode="true"
+    class="full-width swiper-w-relative-pagination"
+    speed="5000"
+    [attr.centered-slides]="false"
+    slides-offset-before="16"
+    slides-offset-after="16"
+    initial-slide="0"
+    [attr.slides-per-view]="'auto'"
+    [attr.space-between]="16"
+    [init]="true">
+      <swiper-slide
+      *ngFor="let item of categories"
+      class="unlock-shadow-from-swiper auto-width">
+        <ion-item
+        (click)="defineCategory(item)"
+        lines="none"
+        mode="md"
+        class="category-item"
+        [ngClass]="{ 'is-selected': selectedCategory.value === item.value}">
+          <ion-text mode="ios">
+            <p>{{ item.text }}</p>
+          </ion-text>
+        </ion-item>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <section class="inicio" [id]="ICategoryValueEnum.INICIO">
+    <!-- CART -->
+    <app-cart [handler]="'page'"></app-cart>
+
+    <div class="logo-wrapper">
+      <div class="container">
+        <ion-img [src]="appInfo.logoPath" [title]=""></ion-img>
+      </div>
+    </div>
+
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="12">
+          <ion-text
+          class="ion-text-center color-gray-text line-height-22"
+          mode="ios">
+            <p class="fs-24 font-w-bold">{{ appInfo.name }}</p>
+            <p class="fs-16 font-w-normal mg-bottom-8">{{ appInfo.specialty }}</p>
+            <p class="fs-14 font-w-thin">{{ appInfo.address.street }}, {{ appInfo.address.number }} - {{ appInfo.address.neighborhood }}, {{ appInfo.address.city }}</p>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="search-wrapper">
+            <ion-searchbar
+            (ionFocus)="openSearchModal()"
+            placeholder="Pesquisar produto"
+            mode="ios" />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="no-pad-top">
+      <ion-row>
+        <ion-col size="12" class="no-pad-top">
+          <ion-text mode="md">
+            <p class="fs-14 color-gray-mid">Mais pedidos</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="home-swiper-wrapper">
+      <swiper-container
+      #mostOrdered
+      free-mode="true"
+      class="full-width swiper-w-relative-pagination"
+      speed="5000"
+      [attr.centered-slides]="false"
+      slides-offset-before="16"
+      slides-offset-after="16"
+      initial-slide="0"
+      [attr.slides-per-view]="'auto'"
+      [attr.space-between]="16"
+      [init]="true">
+        <swiper-slide
+        *ngFor="let item of mostVisited"
+        class="unlock-shadow-from-swiper auto-width">
+          <app-product-card [direction]="'vertical'" [product]="item" [isDisabled]="hasProductInTheCart(item)"></app-product-card>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+
+  <!-- CLÁSSICOS -->
+  <section class="classicos" [id]="ICategoryValueEnum.CLASSICOS">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="12">
+          <ion-text mode="ios" class="line-height-24">
+            <p class="fs-22 font-w-thin color-gray-text mg-top-5">Conheça os <b [ngClass]="{'color-main-primary': selectedCategory.value === ICategoryValueEnum.CLASSICOS}">clássicos</b> <span class="fs-16 color-gray-mid mg-left-5">({{ classics && classics.length }})</span></p>
+            <p class="fs-14 color-gray-mid">Nossos tradicionais.</p>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-xl="4" *ngFor="let item of classics">
+          <app-product-card [direction]="'horizontal'" [product]="item" [isDisabled]="hasProductInTheCart(item)"></app-product-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <!-- ESPECIAIS -->
+  <section class="especiais" [id]="ICategoryValueEnum.ESPECIAIS">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="12">
+          <ion-text mode="ios" class="line-height-24">
+            <p class="fs-22 font-w-thin color-gray-text mg-top-5">Nossos <b [ngClass]="{'color-main-primary': selectedCategory.value === ICategoryValueEnum.ESPECIAIS}">especiais</b> <span class="fs-16 color-gray-mid mg-left-5">({{ specials && specials.length }})</span></p>
+            <p class="fs-14 color-gray-mid">Não tem quem não goste.</p>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-xl="4" *ngFor="let item of specials">
+          <app-product-card [direction]="'horizontal'" [product]="item" [isDisabled]="hasProductInTheCart(item)"></app-product-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>

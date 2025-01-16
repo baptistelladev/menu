@@ -1,0 +1,19 @@
+ion-tabs {
+  ion-tab-bar {
+    --background: var(--black);
+    height: 70px;
+
+    ion-tab-button {
+      flex: none;
+      min-width: 70px;
+      --color: var(--white);
+      --color-selected: var(--white);
+
+      ion-icon { font-size: 20px; }
+    }
+  }
+}
+
+footer {
+  border-top: .5px solid var(--gray-2);
+}

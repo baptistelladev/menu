@@ -1,0 +1,56 @@
+<form class="product-card-inside-cart" [formGroup]="productFormGroup">
+  <ion-item
+  class="ion-bg-transparent"
+  lines="none"
+  mode="ios">
+    <ion-text mode="ios" class="ion-text-start desc line-height-22">
+      <p class="color-gray-text fs-16">{{ product.quantity }}x {{ product.name }}</p>
+      <p class="color-gray-text fs-13 font-w-thin" *ngIf="product.obs">Obs: {{ product.obs }}</p>
+    </ion-text>
+
+    <ion-text mode="ios" class="ion-text-end flex-1">
+      <p><b>{{ product.totalPrice | currency: 'BRL' }}</b></p>
+    </ion-text>
+
+    <ion-button
+    (click)="removeProductFromCart(product)"
+    mode="ios"
+    class=""
+    fill="clear">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <div
+  class="more-or-less-wrapper">
+    <div class="add-wrapper">
+      <ion-input
+      [formControlName]="'quantity_' + product.id"
+      [id]="'quantity_' + product.id"
+      [maxlength]="3"
+      mode="ios"
+      class="ion-text-center"
+      type="text"
+      [inputmode]="'number'">
+        <ion-button
+        fill="clear"
+        slot="start"
+        aria-label="remove"
+        class="thin-icon"
+        [disabled]="product.quantity === 1"
+        (click)="decreaseProduct()">
+          <ion-icon slot="icon-only" name="remove-circle-outline" aria-hidden="true"></ion-icon>
+        </ion-button>
+
+        <ion-button
+        fill="clear"
+        slot="end"
+        aria-label="add"
+        class="thin-icon"
+        (click)="increaseProduct()">
+          <ion-icon slot="icon-only" name="add-circle-outline" aria-hidden="true"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+ion-content {
+  section {
+    &.cart-empty {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &.cart {
+      width: 100%;
+      height: auto;
+
+      .cart-wrapper {
+        width: 100%;
+        max-width: 445px;
+        margin: 0 auto;
+        padding:  16px;
+      }
+    }
+  }
+}
+
+ion-select.payment-method {
+  color: var(--gray-text);
+  font-size: 16px;
+}
+
+ion-input {
+  --color: var(--gray-text);
+  font-size: 16px;
+  font-weight: normal;
+  --placeholder-opacity: 1;
+}

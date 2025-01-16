@@ -1,0 +1,19 @@
+<ion-tabs mode="md">
+  <ion-tab-bar slot="bottom">
+    <ng-container *ngIf="selectedButton">
+      <ion-tab-button
+      *ngFor="let button of tabsButtons"
+      [tab]="button.route"
+      (click)="selectTabButton(button.value)">
+        <ion-icon
+        class="thin-icon"
+        [name]="button.value === selectedButton.value
+        ? button.icon : (button.icon + '-outline')" />
+      </ion-tab-button>
+    </ng-container>
+
+    <ion-text mode="md" class="ion-text-center ion-hide-md-down">
+      <p class="color-gray-mid fs-12">&copy; {{ currentYear }} {{ appInfo.name }} {{ appInfo.specialty }}</p>
+    </ion-text>
+  </ion-tab-bar>
+</ion-tabs>

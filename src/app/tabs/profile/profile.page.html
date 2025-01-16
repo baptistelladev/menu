@@ -1,0 +1,211 @@
+<ion-content
+class="ion-bg-gray-ed"
+[forceOverscroll]="false"
+[fullscreen]="true">
+  <section class="profile">
+    <form [formGroup]="profileForm">
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col size="12">
+            <ion-text
+            class="txt-center"
+            mode="ios">
+              <p class="color-gray-text fs-20 font-w-thin mg-bottom-8">Seus <b>dados</b></p>
+            </ion-text>
+          </ion-col>
+
+          <ion-col size="12" class="no-padding">
+            <ion-item mode="md" class="bootstrap-alert warning" lines="none">
+              <ion-text mode="ios" class="line-height-22">
+                <p class="fs-12 color-bootstrap-warning"><b>Atenção</b></p>
+                <p class="fs-14 color-bootstrap-warning">Estes dados são necessários para efetuar seu pedido.</p>
+              </ion-text>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="4">
+            <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper">
+              <ion-icon slot="start" name="person-add" aria-hidden="true" class="color-gray-mid fs-20 mg-right-16"></ion-icon>
+              <ion-input
+              formControlName="name"
+              maxlength="52"
+              inputmode="text"
+              type="text"
+              label="Nome"
+              labelPlacement="floating"
+              placeholder="Insira seu primeiro nome">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="4">
+            <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper has-helper-below">
+              <ion-icon slot="start" name="id-card" aria-hidden="true" class="color-gray-mid fs-20 mg-right-16"></ion-icon>
+              <ion-input
+              formControlName="document"
+              [maskito]="CPF_MASK"
+              [maskitoElement]="maskPredicate"
+              placeholder="XXX.XXX.XXX-XX"
+              inputmode="numeric"
+              type="text"
+              label="CPF"
+              helperText="Somente números"
+              labelPlacement="floating"
+              [counter]="true"
+              maxlength="14">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="4">
+            <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper has-helper-below">
+              <ion-icon slot="start" name="call" aria-hidden="true" class="color-gray-mid fs-20 mg-right-16"></ion-icon>
+
+              <ion-input
+              formControlName="phone"
+              [maskito]="PHONE_MASK"
+              [maskitoElement]="maskPredicate"
+              inputmode="numeric"
+              type="text"
+              label="Telefone"
+              [counter]="true"
+              labelPlacement="floating"
+              placeholder="(00) 000000000"
+              helperText="Somente números"
+              maxlength="14">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" class="mg-top-16 no-pad-bottom">
+            <ion-text mode="md">
+              <p class="color-gray-mid fs-14 flexed"><ion-icon name="location-outline" class="mg-right-5"></ion-icon> Dados <b  class="mg-left-5">da entrega</b></p>
+            </ion-text>
+          </ion-col>
+
+          <ion-col size="12">
+            <div class="address-wrapper">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12" size-md="6">
+                    <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper border-light">
+                      <ion-input
+                      formControlName="street"
+                      inputmode="text"
+                      type="text"
+                      label="Rua"
+                      labelPlacement="floating"
+                      placeholder="Onde entregar">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col size="12" size-md="6">
+                    <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper border-light">
+                      <ion-input
+                      formControlName="number"
+                      inputmode="numeric"
+                      type="text"
+                      label="Número"
+                      labelPlacement="floating"
+                      placeholder="Número do local">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col size="12" size-md="6">
+                    <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper border-light">
+                      <ion-input
+                      formControlName="neighborhood"
+                      inputmode="text"
+                      type="text"
+                      label="Bairro"
+                      labelPlacement="floating"
+                      placeholder="Informe o bairro">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col size="12" size-md="6">
+                    <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper border-light">
+                      <ion-input
+                      formControlName="city"
+                      inputmode="text"
+                      type="text"
+                      label="Cidade"
+                      labelPlacement="floating"
+                      placeholder="Cidade">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col size="12" size-md="6" class="no-pad-bottom">
+                    <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper border-light">
+                      <ion-input
+                      formControlName="complement"
+                      inputmode="text"
+                      type="text"
+                      label="Complemento (opcional)"
+                      labelPlacement="floating"
+                      placeholder="Ex: ap 44">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col size="12" size-md="6" class="no-pad-bottom">
+                    <ion-item mode="md" class="ion-bg-transparent menu-input-wrapper border-light">
+                      <ion-input
+                      formControlName="reference"
+                      inputmode="text"
+                      type="text"
+                      label="Ponto de referência (opcional)"
+                      labelPlacement="floating"
+                      placeholder="Ex: Próxico ao...">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </ion-col>
+
+          <ion-col size="12">
+            <div class="footer-wrapper">
+              <ion-button
+              *ngIf="!appInfo.cart?.client?.name"
+              [disabled]="profileForm.invalid || isDefiningInfo"
+              (click)="defineProfile()"
+              class="mg-top-32 main-solid fs-14"
+              mode="md"
+              title="Definir meus dados"
+              fill="solid"
+              shape="square">
+                <ng-container *ngIf="!isDefiningInfo">
+                  <ion-icon name="send-outline" class="mg-right-5 fs-18"></ion-icon> Definir meus dados
+                </ng-container>
+
+                <ng-container *ngIf="isDefiningInfo"><ion-spinner mode="ios" name="lines-sharp-small"></ion-spinner></ng-container>
+              </ion-button>
+
+              <ion-button
+              *ngIf="appInfo.cart?.client?.name"
+              [disabled]="profileForm.invalid || formHasChangesBlockButton || isDefiningInfo"
+              (click)="defineProfile()"
+              class="mg-top-32 main-solid fs-14"
+              mode="md"
+              title="Atualizar meus dados"
+              fill="solid"
+              shape="square">
+                <ng-container *ngIf="!isDefiningInfo">
+                  <ion-icon name="refresh-outline" class="mg-right-5 fs-18"></ion-icon> Atualizar meus dados
+                </ng-container>
+
+                <ng-container *ngIf="isDefiningInfo"><ion-spinner mode="ios" name="lines-sharp-small"></ion-spinner></ng-container>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </section>
+</ion-content>
