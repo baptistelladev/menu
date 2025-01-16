@@ -1,6 +1,6 @@
 # Projeto **Menu**.
 
--------------------
+![alt text](https://continuumsaturno.com.br/azt/assets/products/project.gif "Chiara")
 
 Cliente: **Chiara Linguiça Artesanal**.
 Tecnologias utilizadas: **Ionic, Angular**
